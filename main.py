@@ -14,18 +14,29 @@ def Crip():
       y += chr(i+rd.randint(0,5))
       with open(arquivo, 'w+') as arq:
           arq.writelines(['y = "',y,'"'])
+    print('Mensagem Criptografada:',y)
 
 
 def Desc():
-
-    rd.seed(int(input('\nInsira a senha: ')))
-    print()
+    global y
+    print('\n1-Inserir uma mensagem para descriptografar\n2-Descritografar uma mensagem pré-existente\n')
+    x=input('Escolha uma opção: ')
     lista = []
-    for i in y:
-      lista.append(ord(i))
-    for i in lista:
-      print(chr(i-rd.randint(0,5)).lower() ,end='')
-
+    if x=='2':
+      rd.seed(int(input('\nInsira a senha: ')))
+      print()
+      for i in y:
+        lista.append(ord(i))
+      for i in lista:
+        print(chr(i-rd.randint(0,5)).lower() ,end='')
+    elif x=='1':
+      y=input('\nInsira a mensagem: ').upper()
+      rd.seed(int(input('\nInsira a senha: ')))
+      for i in y:
+        lista.append(ord(i))
+      for i in lista:
+        print(chr(i-rd.randint(0,5)).lower() ,end='')
+      
 
 print(menu)
 op = int(input('\nEscolha uma opção: '))
